@@ -1,0 +1,15 @@
+name: Daily Reminder Bot
+on:
+  schedule:
+    - cron: '0 9 * * *' # This means 9:00 AM UTC
+  workflow_dispatch: # This adds a "Run now" button so you can test it!
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Task
+        run: |
+          gh issue create --title "Morning Routine: Complete!" --body "Time to drink water and check your calendar."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
