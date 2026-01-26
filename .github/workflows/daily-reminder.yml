@@ -1,13 +1,18 @@
 name: Daily Reminder Bot
 on:
   schedule:
-    - cron: '0 9 * * *' # This means 9:00 AM UTC
-  workflow_dispatch: # This adds a "Run now" button so you can test it!
+    - cron: '0 9 * * *' # Runs daily at 9:00 AM UTC
+  workflow_dispatch: # This gives you the manual "Run" button
 
 jobs:
   reminder:
     runs-on: ubuntu-latest
     steps:
+      # STEP 1: This fixes the "fatal: not a git repository" error
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # STEP 2: This creates the issue now that the repo is loaded
       - name: Create Task
         run: |
           gh issue create --title "Morning Routine: Complete!" --body "Time to drink water and check your calendar."
