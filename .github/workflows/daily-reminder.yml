@@ -8,7 +8,7 @@ jobs:
   reminder:
     runs-on: ubuntu-latest
     steps:
-      # STEP 1: This fixes the "fatal: not a git repository" error
+      # STEP 1: Load the repo
       - name: Check out repository
         uses: actions/checkout@v4
 
